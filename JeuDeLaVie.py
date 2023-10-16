@@ -1,4 +1,4 @@
-## V1.2 Modification de la methode __afficher() pour un afficher encore plus propre et lisible
+## V1.3 Ajout d'un systeme d'arret du jeu si un tableau est identique au precedent
 from time import sleep
 from copy import deepcopy
 import os
@@ -12,6 +12,7 @@ class Jeu_de_la_vie:
 
     attributs d'instance :
         __tableau
+        __running
 
     methodes :
         run() qui est la boucle du jeu
@@ -25,6 +26,7 @@ class Jeu_de_la_vie:
         """
         Affecte un tableau à deux dimensions à l’attribut __tableau
         """
+        self.__running = True
         self.__tableau = [[0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -56,9 +58,11 @@ class Jeu_de_la_vie:
         et attend delai entre chaque tour.
         """
         for k in range(nb_tours):
-            self.__tour()
-            self.__afficher()
-            sleep(delai)
+            if self.__running == True:
+                self.__tour()
+                self.__afficher()
+                sleep(delai)
+
         
     def __tour(self):
         """
@@ -71,6 +75,9 @@ class Jeu_de_la_vie:
             for j in range(len(self.__tableau[0])):
                 total_voisins = self.__total_voisins(i, j)
                 nouveau_tableau[i][j] = self.__resultat(self.__tableau[i][j], total_voisins)
+            
+        if nouveau_tableau == self.__tableau:
+            self.__running = False
         
         self.__tableau = nouveau_tableau
 
