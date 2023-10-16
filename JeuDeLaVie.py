@@ -1,4 +1,4 @@
-## V1.1 Modification de la methode __afficher() pour un afficher plus propre et rapide
+## V1.2 Modification de la methode __afficher() pour un afficher encore plus propre et lisible
 from time import sleep
 from copy import deepcopy
 import os
@@ -25,11 +25,11 @@ class Jeu_de_la_vie:
         """
         Affecte un tableau à deux dimensions à l’attribut __tableau
         """
-        self.__tableau = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        self.__tableau = [[0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                        [0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                        [0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                        [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                        [0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                        [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -71,7 +71,7 @@ class Jeu_de_la_vie:
             for j in range(len(self.__tableau[0])):
                 total_voisins = self.__total_voisins(i, j)
                 nouveau_tableau[i][j] = self.__resultat(self.__tableau[i][j], total_voisins)
-
+        
         self.__tableau = nouveau_tableau
 
     def __valeur_case(self, i, j):
@@ -110,13 +110,16 @@ class Jeu_de_la_vie:
 
     def __afficher(self):
         """Affiche l'état actuel du jeu de la vie."""
-        str_tableau = ""
+        tableau_str = ""
         for ligne in self.__tableau:
             for cellule in ligne:
-                str_tableau += str(cellule)
-            str_tableau += '\n'
+                if cellule == 1:
+                    tableau_str += '■'  # Utilise un caractère spécial (par exemple, ■) pour représenter les cellules vivantes
+                else:
+                    tableau_str += '□'  # Utilise un espace pour représenter les cellules mortes
+            tableau_str += '\n'
         os.system('cls')
-        print(str_tableau)
+        print(tableau_str)
 
 mon_jeu = Jeu_de_la_vie()
 mon_jeu.run(100, 0.2)
