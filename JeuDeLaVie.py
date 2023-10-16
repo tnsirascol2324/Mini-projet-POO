@@ -1,4 +1,4 @@
-## V1 Premiere version fonctionelle du jeu
+## V1.1 Modification de la methode __afficher() pour un afficher plus propre et rapide
 from time import sleep
 from copy import deepcopy
 import os
@@ -28,8 +28,8 @@ class Jeu_de_la_vie:
         self.__tableau = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                        [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                        [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -110,12 +110,13 @@ class Jeu_de_la_vie:
 
     def __afficher(self):
         """Affiche l'état actuel du jeu de la vie."""
-        os.system('cls')
+        str_tableau = ""
         for ligne in self.__tableau:
             for cellule in ligne:
-                print(cellule, end=' ')
-            print()
+                str_tableau += str(cellule)
+            str_tableau += '\n'
+        os.system('cls')
+        print(str_tableau)
 
-    
 mon_jeu = Jeu_de_la_vie()
-mon_jeu.run(100, 0.1)
+mon_jeu.run(100, 0.2)
