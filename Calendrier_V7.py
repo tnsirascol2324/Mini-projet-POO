@@ -361,7 +361,7 @@ def temps() :
                 print(event.commencer_evenement())
 
 
-calendar =  Calendrier("vivian.penello@e.rascol.net")
+calendar =  Calendrier("")
 liste_calendriers.append(calendar)
 event1 = Evenement("Evenement 1", 16, 22, 8, 10, 2023, 14, 55, 9, 10, 2023, 1, "ici")
 event2 = Evenement("evenement 2", 16, 25, 8, 10, 2023, 15, 12, 8, 10, 2023, 5, "ici aussi")
