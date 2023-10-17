@@ -21,7 +21,7 @@ class Evenement :
         lieu : str, lieu de l'évènement
 
     Méthodes :
-        validite_jour(jour : int, mois : int, annee : int) -> bool : Vérifie que le jour exite dan le moi et l'année donnée
+        validite_jour(jour : int, mois : int, annee : int) -> bool : Vérifie que le jour existe dan le mois et l'année donnée
         afficher_debut() -> str : renvoie la date et l'heure du début de l'évènement
         afficher_fin() -> str : renvoie la date et l'heure de fin de l'évènement
         afficher_nom() -> str : renvoie le nom de l'évènement
